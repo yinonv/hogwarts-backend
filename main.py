@@ -12,7 +12,7 @@ CORS(app)
 @app.route('/students', methods=['GET'])
 def all_students():
     global students
-    return json.dumps(students)
+    return "hello from hogwarts"
 
 
 @app.route('/skills', methods=['GET'])
