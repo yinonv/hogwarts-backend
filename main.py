@@ -9,10 +9,15 @@ from data import courses_list
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/', methods=['GET'])
+def hello():
+    return "Hello from hogwarts!"
+
+
 @app.route('/students', methods=['GET'])
 def all_students():
     global students
-    return "hello from hogwarts"
+    return json.dumps(students)
 
 
 @app.route('/skills', methods=['GET'])
@@ -34,6 +39,6 @@ def new_student():
 
 
 if __name__ == "__main__":
-    app.run(host='localhost', port=2600)
+    app.run(host='localhost', port=5000)
 
     
