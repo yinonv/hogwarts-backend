@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import json
+import json, os
 from flask_cors import CORS
 from data import student_list as students
 from data import skills_list
@@ -39,6 +39,7 @@ def new_student():
 
 
 if __name__ == "__main__":
-    app.run(host='localhost', port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
 
     
