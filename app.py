@@ -47,6 +47,7 @@ def update_student():
 if __name__ == "__main__":
     students = data.student_list[:]
     port = int(os.environ.get('PORT', 2700))
-    app.run(host='127.0.0.1', port=port)
+    app.run(host='0.0.0.0', port=port)
+    # app.run(host='127.0.0.1', port=port)
 
     
