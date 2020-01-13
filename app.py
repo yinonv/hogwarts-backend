@@ -27,7 +27,7 @@ def courses():
     return json.dumps(data.courses_list)
 
 
-@app.route('/students/add/', methods=['POST'])
+@app.route('/students/add', methods=['POST'])
 def new_student():
     global students
     student = request.get_json(force=True)
@@ -36,7 +36,7 @@ def new_student():
     return "Added"
 
 
-@app.route('/students/edit/', methods=['POST'])
+@app.route('/students/edit', methods=['POST'])
 def update_student():
     global students
     student = request.get_json(force=True)
@@ -47,6 +47,6 @@ def update_student():
 if __name__ == "__main__":
     students = data.student_list[:]
     port = int(os.environ.get('PORT', 2700))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='127.0.0.1', port=port)
 
     
