@@ -27,7 +27,7 @@ def courses():
     return json.dumps(data.courses_list)
 
 
-@app.route('/students/add', methods=['POST'])
+@app.route('/student/add', methods=['POST'])
 def new_student():
     global students
     student = request.get_json(force=True)
@@ -36,12 +36,23 @@ def new_student():
     return "Added"
 
 
-@app.route('/students/edit', methods=['POST'])
+@app.route('/student/edit', methods=['POST'])
 def update_student():
     global students
     student = request.get_json(force=True)
     students = data.update(students, student)
     return "Updated"
+
+
+@app.route('/student/delete', methods=['DELETE'])
+def delete_student():
+    global students
+    response = request.get_json(force=True)
+    id = response["id"]
+    delete_response = data.delete(students, id)
+    if delete_response:
+        return "Deleted"
+    return "id not found, no student deleted!"
 
 
 if __name__ == "__main__":

@@ -32,3 +32,9 @@ def get_id(all_students):
     return len(all_students) + 1
 
 
+def delete(all_students, id):
+    for index, student in enumerate(all_students):
+        if student["id"] == id:
+            all_students.pop(index)
+            return True
+    return False
