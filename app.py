@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import json, os, data
+import json
+import os
+import data
 
 
 app = Flask(__name__)
 CORS(app)
+
 
 @app.route('/', methods=['GET'])
 def hello():
@@ -32,7 +35,7 @@ def new_student():
     global students
     student = request.get_json(force=True)
     student["id"] = data.get_id(students)
-    students.append(student)
+    students.insert(student["id"] - 1, student)
     return "Added"
 
 
@@ -44,6 +47,12 @@ def update_student():
     return "Updated"
 
 
+@app.route('/stats', methods=['GET'])
+def get_stats():
+    global students
+    return json.dumps(data.get_skills_count(students))
+
+
 @app.route('/student/delete', methods=['DELETE'])
 def delete_student():
     global students
@@ -52,7 +61,7 @@ def delete_student():
     delete_response = data.delete(students, id)
     if delete_response:
         return "Deleted"
-    return "id not found, no student deleted!"
+    return ("id not found, no student deleted!", 400)
 
 
 if __name__ == "__main__":
@@ -60,5 +69,3 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 2700))
     app.run(host='0.0.0.0', port=port)
     # app.run(host='127.0.0.1', port=port)
-
-    
