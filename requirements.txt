@@ -24,7 +24,7 @@ six==1.13.0
 soupsieve==1.9.5
 token-bucket==0.2.0
 urllib3==1.25.7
-waitress==1.4.2
+waitress==1.4.3
 Werkzeug==0.16.0
 wrapt==1.11.2
 wrk==0.3.2
